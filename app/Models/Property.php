@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\PropertyStatus;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -22,6 +23,10 @@ class Property extends Model
         'rooms',
         'area',
         'status',
+    ];
+
+    protected $casts = [
+        'status' => PropertyStatus::class,
     ];
 
     public function bookings(): HasMany

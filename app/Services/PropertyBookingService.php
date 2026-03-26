@@ -17,7 +17,7 @@ class PropertyBookingService
                 ->lockForUpdate()
                 ->firstOrFail();
 
-            if (in_array($property->status, ['booked', 'sold'], true)) {
+            if (!$property->status->canBeBooked()) {
                 throw new HttpException(422, 'Property cannot be booked.');
             }
 
